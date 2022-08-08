@@ -29,8 +29,7 @@ class WeatherPage extends StatelessWidget {
             weatherController.getWeatherList();
           }
         },
-        child: Expanded(
-              child: Obx(()=> weatherController.isLoading.value == true ?
+        child: Obx(()=> weatherController.isLoading.value == true ?
               ListView.builder(
                   physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                   padding: EdgeInsets.zero,
@@ -54,7 +53,6 @@ class WeatherPage extends StatelessWidget {
                   })
               ),
             ),
-      ),
     );
   }
 }

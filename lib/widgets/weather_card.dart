@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/pages/detail_weather_page.dart';
+import 'package:weather_app/utils/constants.dart';
+import 'package:weather_app/utils/functions.dart';
 
 class WeatherCard extends StatelessWidget {
   final WeatherModel weatherItem;
@@ -33,7 +35,7 @@ class WeatherCard extends StatelessWidget {
               height: 60,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                child: Image.asset("",
+                child: Image.network("${Constants.imageUrl+weatherItem.weather![0].icon.toString()}@2x.png",
                   fit: BoxFit.cover,
                   height: 110,
                 ),
@@ -45,19 +47,19 @@ class WeatherCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(weatherItem.date,
+                Text(Functions.getDateWithDay(weatherItem.dtTxt.toString(), 1),
                   style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 6.0,
                 ),
-                Text(weatherItem.weather,
+                Text(weatherItem.weather![0].main.toString(),
                   style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(
                   height: 6.0,
                 ),
-                Text("Temp : ${weatherItem.temp} C",
+                Text(Functions.getCelsiusTemp(weatherItem.main!.temp),
                   style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.normal),
                 ),
               ],
